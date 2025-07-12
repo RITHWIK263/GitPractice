@@ -1,0 +1,16 @@
+<p id="id1" align="center"></p>
+<script>
+    //mp=new Map();
+    mp = new Map([["IronMan", "RDJ"], ["Pokemon", "Greninja"], ["India", "Prabhas"]]);
+    s="";
+   // for(x of mp.keys()){
+    //    s = s + x +"<br>";
+    //}
+   // for(x of mp.values()){
+    //    s = s + x +"<br>";
+   // }
+   for(x of mp.entries()){
+        s = s + x +"<br>";
+   }
+    document.getElementById("id1").innerHTML = s;
+</script>

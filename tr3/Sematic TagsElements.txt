@@ -1,0 +1,174 @@
+Sematic Tags/Elements
+     Header
+
+Navigation[Menu]
+
+      Main
+Aside     Aside
+    Section
+    Article
+
+    Footer
+
+
+
+
+1.<article>
+2.<section>
+3.<aside>
+4.<header>
+5.<footer>
+6.<main>
+7.<nav>
+8.<figure>
+9.<figcaption>
+10<summary>
+11.<details>
+12.<mark>
+13.<time>
+
+
+
+Inline:   <table style='border-collapse'>
+Internal:   <style>
+                 p
+                 {
+                  background-color: black;
+                  color: gold;
+                 }
+           </style>
+           <table style='border-collapse'>
+           </table>
+           <p>....RR....
+           <p style='text-alien: center'> ground
+
+
+
+
+
+
+
++ represents at least one occurrence of specified pattern
+* represents at least one or more then one occurrence of specified pattern
+\d ---digits only
+\D----anything than digits
+\s----white space
+\S---anything than white space
+\w---words---alphabets, digits,_
+{}---grouping of expression
+[]----range of values
+
+
+
+
+
+html is static
+
+var a=23;
+let a=23;
+  const a=23;
+a=23;      //default - var or let ?
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+this is called hasting
+
+
+
+
+
+
+
+
+<head>
+<meta name="author"    content="Rithwik"/>
+<meta name="description"    content="profile of Mr..."/>
+<meta name="generator"    content="HTML Code developer tool"/>
+<meta name="charset"    content="UTF-8"/>
+<meta name="viewport"    content="width=device-width scale=1.0"/>
+<meta http-equiv="refresh"    content="5;URL=form1.html"/>
+</head>
+<center>
+      signing out ..............................
+
+
+
+
+
+
+
+{ 
+
+                    title: "Top 10 JavaScript Tips Every Developer Should Know", 
+                    channel: "Code Master", 
+                    views: "850K", 
+                    time: "1 week ago", 
+                    duration: "15:45", 
+                    category: "learning",
+                    thumbnail: "https://youtu.be/zRlx4bzXenc",
+                    videoId: "zRlx4bzXenc",
+                    channelAvatar: "https://i.pravatar.cc/100?img=3",
+                    subscribers: "850K subscribers",
+                    description: "Discover the top 10 JavaScript tips and tricks that every developer should know to write cleaner, more efficient code."
+                },
+
+
+
+
+
+zRlx4bzXenc
+give video id of 
+https://youtu.be/zRlx4bzXenc
+
+
+
+
+
+<center>
+<style>keyframes ajay
+{
+from {background
+
+
+
+
+
+
+
+
+
+
+
+flex-direction
+flex-wrap
+flex-flow
+flex-
+flex-
+flex-
+
+
+outputStream, super outputStream, printStream 
+
+
+
+object serialization: means converting objects into streams
+
+wrapper classes: primitive data type used as objects like int, float
+
+
+
+
+
+
+
+
+
+
+Uppalapati Venkata Suryanarayana Prabhas Raju( 23 October 1979)

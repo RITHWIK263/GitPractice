@@ -1,0 +1,259 @@
+sun microsystems in 1995 initially named as 'oak' then converted to java
+
+
+NoSuchMethodError
+NoClassDefFoundError
+source Code    [Compile]    Bytecode    [Interpreted + Run]    Output
+[.java]        javac        .class      JVM
+
+
+y45
+Simple
+Easy to learn
+High level
+Free
+Open source
+Object oriented
+Plat form independent
+->JVM: java virtual machine
+>It provide with JRE: java Runtime Environment
+Java is secured because it uses digital signature
+portable
+->JAR: Java Archive files
+->WAR: web Archive file
+Look-'n'-Feel feature    swing/JavaFX
+Robust
+Write once run anywhere
+Architecture neutral [hardware independent]
+->JiT: Just-In-Time compiler
+>It complies during runtime
+Java is distributed property
+
+
+//  Single-line
+/*
+    Multi-line
+*/  
+
+/**
+*
+*  @JavaDoc
+*
+*/
+
+/*
+*  @author name
+*
+*
+*  @version 1.0.0
+*
+*
+*  @param ar
+*         description
+*/
+
+
+void     0bite
+Boolean  1bite
+byte     1bite
+char     2bites
+int      4bites
+short    2bites
+long     8bites
+float    4bites         [2 bites of precision]
+double   8bites         [4 bites of precision]   
+
+
+Print this series:     1   4  9    ... up to 10 terms
+
+20   1    18    2    ...      2      10
+
+n (input) - prime no?
+
+
+
+-> Static: It allow us to member before or without declaring an object
+-> Fields: Static field can remember is old value
+-> Static member as one copy in memory and kept within scope of class
+-> Local variable cannot be declared as static
+-> Outer class can't be declared as static
+-> Any static field is automatically initialized by its default values
+>{int
+>long
+>short
+>byte
+>char}---0
+>{float 
+>double}---0.0
+>Boolean---false
+>object---null
+
+pure static block is executed first then main method
+
+Class
+Object
+Inheritance
+Polymorphism
+Encapsulation
+Abstraction
+Data Hiding
+Data Messaging
+
+
+-> Constructor: It is the special method
+-> It as same as class
+-> It has no return type
+-> It is invoked automatically whenever object of class is insatiate
+-> It is in general used to initialize the fields of class
+-> Two types
+>Default
+>parameterized
+-> It can have parameter
+-> It can be overloaded
+-> It is avoided to be declared as private
+-> It can never be
+>Static
+>Abstract
+>Final
+
+
+
+the calling of 'this' constructor should be first statement within another of same class.
+
+# 2D Coordinate Point   x, y
+p1, p2 (user input)
+p3, p1+p2
+    p3.x = p1.x+p2.x;
+    p3.y = p1.y+p2.y;
+p4  p1-p2
+Distance between p1 and p2
+
+# INR R, p
+i1, i2(user input)
+i3  +
+i4  -
+
+-----------------------------------------------------------------------------------------------
+-> Single inheritance
+-> Multi level inheritance
+-> Multiple inheritance
+-> Hierarchical inheritance
+-> Hybrid inheritance
+-> Multipath inheritance
+-> Java does not support multiple, hybrid, multipath.
+-> The inherited members retain their same accessibility as there base class.
+-> Redefining the inherited method--> method overriding.
+-> final keyword:
+                If we want to declared a variable to constant.
+> It prevents further inheritance.
+> It can't have nested class.
+--> Ex:
+      All wrapper, string classes.
+> If you declare to be final then it prevents method overriding. 
+-> super keyword:
+                It is reference variable which refer to object of immediate base class.
+> It also removes naming ambiguity.
+
+class A{
+a()
+{
+}
+}
+class extends A{
+B()
+{
+super();      (or)     super(23);
+}
+}
+
+-> calling of super constructor should be first statement with in constructor of declared class.
+
+
+-> Abstract:
+           Something which is imagination but is yet to be implemented.
+> We cannot have object of an abstract class.
+
+Why we use interface ?
+-> Virtually to support multiple inheritance.
+
+
+
+1.take radius as input calculate circumference
+circle     [r]      Area      Circumference
+
+2. Rectangle     [length, breath]   Area     Perimeter
+
+3.Quadratic Equation
+[a, b, c]
+i. d= b*b-4*a*c;
+ii. Nature of roots
+iii. calculate the value(s) of the roots
+
+-------------------------------------------------------------------------------
+
+a=[23, 14, 15, 29, 10];
+for(x of a)
+1.sum and avg
+2.Max +index
+3.min +index
+4.middle element
+5.Sum of all the even/odd elements
+6.print in reverse order[Descending]
+
+
+
+class TollBooth
+      constructor(){
+             this.vehicle=0;
+             this.amount=0.0;
+}
+      vehicles
+      amount
+      payVechile()
+         vechile++;
+         amount+=10;
+      noPaycar()
+          vechile++;
+     display()
+         vehicle
+          amount
+
+---------------------------------------------------------------------------------------------------
+
+1.
+PaulluaP
+pau  uaP
+Pa    aP
+P      P        [i need to get output like this] then
+
+2. find the first non-repeating char in given string
+3. find the longest palindrome string in given string
+4. swap case of given string[upper case to lower case and lower case to upper case both]
+5. check whether 2 strings are anagrams of each other
+6. 2 ^ 3 + 5 * 2 ^ 2 - 12 / 6   [output 26]
+7. 5 6 2 + * 12 4 / -   [postfix] [output 37]
+8. change "a quick brown fox" to "A Quick Brown Fox"
+9. convert 'Tridib Kumar Paul" to "T.K. Paul"
+10. convert any number names into its Number digits atleast  three
+eg    Twenty Three => 23
+
+
+Uppalapati Venkata Suryanarayana Prabhas Raju( 23 October 1979)
+
+--------------------------------------------------------------------------------------------------
+
+=>open vs code have a new folder
+> open new terminal
+>write in terminal (npx create-react-app project name)
+
+----------------------------------------------------------------------------------------------
+
+what is class components 
+and functional componentsand [difference Monday ask]
+
+
+
+
+
+
+

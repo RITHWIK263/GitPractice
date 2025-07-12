@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toll Booth Example</title>
+    <style>
+        body {
+            padding: 30px;
+            background-color: #E8E8E8;
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            color: #060270;
+        }
+        button {
+            background-color: #5DE2E7;
+            color: #E2EAF4;
+            border: none;
+            padding: 12px 24px;
+            margin: 8px 4px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #FFFFFF;
+            color: #5DE2E7;
+        }
+        .reset-btn {
+            background-color: #D20103;
+            color: #FFFFFF;
+        }
+        .reset-btn:hover {
+            background-color: #FFFFFF;
+            color: #D20103;
+            border: 1px solid #D20103;
+        }
+        #output {
+            background: #CECECE;
+            color: #000000;
+            padding: 18px 24px;
+            border-radius: 8px;
+            margin-top: 24px;
+            min-height: 40px;
+            box-shadow: 0 2px 8px #E7DDFF;
+            font-size: 18px;
+        }
+        #vehicle-info {
+            background: #1A237E;
+            color: #FFF8E1;
+            padding: 10px 18px;
+            border-radius: 8px 8px 0 0;
+            margin-top: 18px;
+            font-size: 18px;
+            font-family: 'Courier New', Courier, monospace;
+            border: 2px solid #FFC107;
+            border-bottom: none;
+            text-align: left;
+        }
+        #receipt {
+            background: #FFF8E1;
+            color: #D20103;
+            padding: 16px 20px;
+            border-radius: 0 0 8px 8px;
+            margin-top: 0;
+            min-height: 30px;
+            box-shadow: 0 2px 8px #47F901;
+            font-size: 17px;
+            border: 1px dashed #D20103;
+            border-top: none;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #bill-btn {
+            display: block;
+            margin: 16px auto 0 auto;
+            background-color: #060270;
+            color: #FFF8E1;
+            font-weight: bold;
+        }
+        #bill-btn:hover {
+            background-color: #FFF8E1;
+            color: #060270;
+            border: 1px solid #060270;
+        }
+        #print-btn {
+            display: block;
+            margin: 16px auto 0 auto;
+            background-color: #DFC57B;
+            color: #FFF;
+            font-weight: bold;
+        }
+        #print-btn:hover {
+            background-color: #FFF;
+            color: #DFC57B;
+            border: 1px solid #DFC57B;
+        }
+        /* Print styles */
+        @media print {
+            body * {
+                visibility: hidden !important;
+            }
+            #vehicle-info, #vehicle-info *,
+            #receipt, #receipt * {
+                visibility: visible !important;
+            }
+            #vehicle-info, #receipt {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100vw;
+                min-height: 100vh;
+                background: #E3F2FD !important;
+                color: #1A237E !important;
+                box-shadow: none !important;
+                border: 2px solid #DFC57B !important;
+                font-size: 22px !important;
+                padding: 40px !important;
+            }
+            #receipt {
+                border-top: none !important;
+                margin-top: 0 !important;
+                border-radius: 0 0 8px 8px !important;
+            }
+            #vehicle-info {
+                border-radius: 8px 8px 0 0 !important;
+                border-bottom: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Toll Booth</h2>
+    <label for="vehicle-number" style="font-weight:bold;">Vehicle Number:</label>
+    <input type="text" id="vehicle-number" placeholder="Enter vehicle number" style="padding:8px; font-size:16px; border-radius:5px; border:1px solid #CCC; margin-bottom:10px;">
+    <button onclick="tb.payVehicle()">Pay Vehicle</button>
+    <button onclick="tb.noPayCar()">No Pay Car</button>
+    <button onclick="tb.display()">Display</button>
+    <button class="reset-btn" onclick="tb.reset()">Reset</button>
+    <p id="output"></p>
+    <div id="vehicle-info" style="display:none;"></div>
+    <div id="receipt"></div>
+    <button id="bill-btn" onclick="tb.displayBill()">Bill</button>
+    <button id="print-btn" onclick="printReceipt()">Print</button>
+
+    <script>
+        class TollBooth {
+            constructor() {
+                this.vehicle = 0;
+                this.amount = 0.0;
+                this.lastVehicleNumber = "";
+                this.lastDateTime = "";
+            }
+
+            getVehicleNumberInput() {
+                return document.getElementById("vehicle-number").value.trim();
+            }
+
+            showVehicleInfo(vehicleNumber, dateTime) {
+                const infoDiv = document.getElementById("vehicle-info");
+                if (vehicleNumber && dateTime) {
+                    infoDiv.innerHTML = `<strong>Vehicle Number:</strong> ${vehicleNumber}<br><strong>Date & Time:</strong> ${dateTime}`;
+                    infoDiv.style.display = "block";
+                } else {
+                    infoDiv.innerHTML = "";
+                    infoDiv.style.display = "none";
+                }
+            }
+
+            payVehicle() {
+                const vehicleNumber = this.getVehicleNumberInput();
+                if (!vehicleNumber) {
+                    alert("Please enter the vehicle number!");
+                    return;
+                }
+                this.vehicle++;
+                this.amount += 10;
+                const now = new Date();
+                const dateTime = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+                this.lastVehicleNumber = vehicleNumber;
+                this.lastDateTime = dateTime;
+                document.getElementById("output").innerHTML = "Vehicle paid. Total vehicles: " + this.vehicle;
+                this.showVehicleInfo(vehicleNumber, dateTime);
+                this.showReceipt("Payment Received", 10);
+            }
+
+            noPayCar() {
+                const vehicleNumber = this.getVehicleNumberInput();
+                if (!vehicleNumber) {
+                    alert("Please enter the vehicle number!");
+                    return;
+                }
+                this.vehicle++;
+                const now = new Date();
+                const dateTime = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+                this.lastVehicleNumber = vehicleNumber;
+                this.lastDateTime = dateTime;
+                document.getElementById("output").innerHTML = "Vehicle did not pay. Total vehicles: " + this.vehicle;
+                this.showVehicleInfo(vehicleNumber, dateTime);
+                this.showReceipt("No Payment", 0);
+            }
+
+            display() {
+                document.getElementById("output").innerHTML =
+                    "Total vehicles: " + this.vehicle + "<br>Total amount: ₹" + this.amount;
+                document.getElementById("receipt").innerHTML = "";
+                this.showVehicleInfo("", "");
+            }
+
+            reset() {
+                this.vehicle = 0;
+                this.amount = 0.0;
+                this.lastVehicleNumber = "";
+                this.lastDateTime = "";
+                document.getElementById("output").innerHTML = "Toll booth reset.";
+                document.getElementById("receipt").innerHTML = "";
+                this.showVehicleInfo("", "");
+                document.getElementById("vehicle-number").value = "";
+            }
+
+            showReceipt(type, amount) {
+                const now = new Date();
+                let html = `<strong>Receipt</strong><br>`;
+                html += `Type: ${type}<br>`;
+                html += `Amount: ₹${amount}<br>`;
+                html += `Time: ${now.toLocaleTimeString()}<br>`;
+                html += `Date: ${now.toLocaleDateString()}`;
+                document.getElementById("receipt").innerHTML = html;
+                // Always show vehicle info for printing
+                if (this.lastVehicleNumber && this.lastDateTime) {
+                    this.showVehicleInfo(this.lastVehicleNumber, this.lastDateTime);
+                }
+            }
+
+            displayBill() {
+                let html = `<strong>Bill</strong><br>`;
+                html += `Total vehicles: ${this.vehicle}<br>`;
+                html += `Total amount: ₹${this.amount}`;
+                document.getElementById("receipt").innerHTML = html;
+                // Show last vehicle info for printing
+                if (this.lastVehicleNumber && this.lastDateTime) {
+                    this.showVehicleInfo(this.lastVehicleNumber, this.lastDateTime);
+                } else {
+                    this.showVehicleInfo("", "");
+                }
+            }
+        }
+
+        const tb = new TollBooth();
+
+        function printReceipt() {
+            const receiptDiv = document.getElementById("receipt");
+            const vehicleInfoDiv = document.getElementById("vehicle-info");
+
+            // Check if there is anything to print
+            if (receiptDiv.innerHTML.trim() === "" && vehicleInfoDiv.innerHTML.trim() === "") {
+                alert("No receipt or bill to print!");
+                return;
+            }
+
+            // If vehicle info is hidden or empty but we have last vehicle details, fill it for printing
+            if (
+                (vehicleInfoDiv.innerHTML.trim() === "" || vehicleInfoDiv.style.display === "none") &&
+                tb.lastVehicleNumber &&
+                tb.lastDateTime
+            ) {
+                vehicleInfoDiv.innerHTML = `<strong>Vehicle Number:</strong> ${tb.lastVehicleNumber}<br><strong>Date & Time:</strong> ${tb.lastDateTime}`;
+                vehicleInfoDiv.style.display = "block";
+            }
+
+            window.print();
+        }
+    </script>
+</body>
+</html>

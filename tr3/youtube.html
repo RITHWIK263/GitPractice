@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube - Home</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; }
+        .header { background: #fff; padding: 12px 24px; display: flex; align-items: center; box-shadow: 0 2px 4px #0001; position: relative; z-index: 2;}
+        .logo-container { display: flex; align-items: center; margin-right: 24px; }
+        .yt-icon {
+            width: 36px; height: 36px; margin-right: 8px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-text { font-size: 2em; color: #ff0000; font-weight: bold; letter-spacing: -2px; }
+        .search { flex: 1; display: flex; justify-content: center; }
+        .search input { width: 60%; padding: 8px; border-radius: 2px; border: 1px solid #ccc; }
+        .header-icons { display: flex; align-items: center; gap: 18px; }
+        .icon-btn {
+            background: none; border: none; cursor: pointer; padding: 6px;
+            display: flex; align-items: center; border-radius: 50%;
+            transition: background 0.2s;
+        }
+        .icon-btn:hover { background: #eee; }
+        .sign-in-btn {
+            background: #fff; color: #065fd4; border: 1px solid #065fd4;
+            border-radius: 18px; padding: 6px 18px; font-weight: bold; margin-left: 10px;
+            cursor: pointer; transition: background 0.2s, color 0.2s;
+        }
+        .sign-in-btn:hover { background: #065fd4; color: #fff; }
+        .main-container { display: flex; }
+        .sidebar {
+            width: 200px;
+            background: #fff;
+            padding-top: 24px;
+            min-height: 100vh;
+            box-shadow: 1px 0 6px #0001;
+            position: relative;
+            z-index: 1;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            padding: 14px 28px;
+            font-size: 1.1em;
+            color: #222;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .sidebar li:hover, .sidebar li.active {
+            background: #f1f1f1;
+            font-weight: bold;
+        }
+        .sidebar li svg {
+            margin-right: 14px;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 16px;
+            padding: 14px 0 14px 0;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            justify-content: center;
+            position: sticky;
+            top: 64px;
+            z-index: 1;
+        }
+        .filter-btn {
+            padding: 7px 22px;
+            background: #f1f1f1;
+            border: none;
+            border-radius: 18px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: #222;
+            color: #fff;
+        }
+
+        .content { max-width: 900px; margin: 40px auto; }
+        .video-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px #0002; }
+        .video-title { font-size: 1.3em; margin: 10px 0; }
+        .channel { color: #555; }
+        @media (max-width: 900px) {
+            .main-container { flex-direction: column; }
+            .sidebar { width: 100%; min-height: unset; box-shadow: none; display: flex; flex-direction: row; overflow-x: auto; }
+            .sidebar ul { display: flex; flex-direction: row; }
+            .sidebar li { padding: 10px 18px; font-size: 1em; }
+            .content { margin: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <span class="yt-icon">
+                <svg viewBox="0 0 90 60" width="32" height="32">
+                    <rect x="0" y="0" width="90" height="60" rx="15" fill="#FF0000"/>
+                    <polygon points="36,18 66,30 36,42" fill="#fff"/>
+                </svg>
+            </span>
+            <span class="logo-text">YouTube</span>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Search">
+        </div>
+        <div class="header-icons">
+            <button class="icon-btn" title="Create">
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                    <rect x="3" y="7" width="15" height="10" rx="2" fill="#555"/>
+                    <polygon points="19,9 23,12 19,15" fill="#555"/>
+                </svg>
+            </button>
+            <button class="icon-btn" title="Notifications">
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2zm6-6V11c0-3.07-1.63-5.64-5-6.32V4a1 1 0 1 0-2 0v.68C7.63 5.36 6 7.92 6 11v5l-1.7 1.7A1 1 0 0 0 5 20h14a1 1 0 0 0 .7-1.7L18 16z" fill="#555"/>
+                </svg>
+            </button>
+            <button class="icon-btn" title="Account">
+                <svg width="28" height="28" viewBox="0 0 28 28">
+                    <circle cx="14" cy="10" r="5" fill="#888"/>
+                    <ellipse cx="14" cy="21" rx="8" ry="5" fill="#888"/>
+                </svg>
+            </button>
+            <button class="sign-in-btn">Sign in</button>
+        </div>
+    </div>
+    <div class="filter-bar">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Sports</button>
+        <button class="filter-btn">WWE</button>
+        <button class="filter-btn">Recommended</button>
+    </div>
+
+    <div class="main-container">
+        <nav class="sidebar">
+            <ul>
+                <li class="active">
+                    <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#222" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    Home
+                </li>
+                <li>
+                    <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#e62117" d="M10.5 2.5l7.5 4.5v10l-7.5 4.5-7.5-4.5v-10z"/><polygon fill="#fff" points="10,8 16,12 10,16"/></svg>
+                    Shorts
+                </li>
+                <li>
+                    <svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#1976d2"/><polygon fill="#fff" points="12,7 12,13 16,15"/></svg>
+                    Watch Later
+                </li>
+                <li>
+                    <svg width="22" height="22" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2" fill="#ff0000"/><polygon fill="#fff" points="10,10 16,12 10,14"/></svg>
+                    Subscriptions
+                </li>
+                <li>
+                    <svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#888"/><path d="M12 7v5l4 2" stroke="#fff" stroke-width="2" fill="none"/></svg>
+                    History
+                </li>
+            </ul>
+        </nav>
+
+        <div>
+        <div class="content">
+            <div class="video-card">
+                <img src="https://img.youtube.com/vi/1WvDI6NwP4A/hqdefault.jpg" alt="WWE Raw Highlights" style="width:100%; border-radius:8px;">
+                <div class="video-title">WWE Raw Highlights: Top Moments This Week</div>
+                <div class="channel">WWE • 2.3M views • 1 day ago</div>
+                <p>Catch all the action and drama from this week's Monday Night Raw, featuring your favorite WWE Superstars.</p>
+            </div>
+            <br>
+            <div class="video-card">
+                <img src="https://img.youtube.com/vi/2Vv-BfVoq4g/hqdefault.jpg" alt="Sports News Today" style="width:100%; border-radius:8px;">
+                <div class="video-title">Sports News Today: Latest Updates & Highlights</div>
+                <div class="channel">ESPN • 1.1M views • 3 hours ago</div>
+                <p>Stay updated with the latest sports news, match highlights, and expert analysis from around the world.</p>
+            </div>
+            <br>
+            <div class="video-card">
+                <img src="https://img.youtube.com/vi/3XWgkKkFqk8/hqdefault.jpg" alt="WWE Breaking News" style="width:100%; border-radius:8px;">
+                <div class="video-title">WWE Breaking News: Superstar Returns!</div>
+                <div class="channel">Wrestling Hub • 850K views • 5 hours ago</div>
+                <p>Breaking news from WWE! A legendary superstar makes a shocking return to the ring. Full details inside.</p>
+            </div>
+            <br>
+            <div class="video-card">
+                <img src="https://img.youtube.com/vi/4zH5iYM4wJo/hqdefault.jpg" alt="Sports Analysis" style="width:100%; border-radius:8px;">
+                <div class="video-title">In-Depth Sports Analysis: What You Missed</div>
+                <div class="channel">Sports Central • 600K views • 8 hours ago</div>
+                <p>Expert breakdown and analysis of the biggest sports stories and matches from the past week.</p>
+            </div>
+        </div>
+<!-- ...existing code... -->
+<nav class="sidebar">
+    <ul>
+        <li class="active">
+            <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#222" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Home
+        </li>
+        <li>
+            <a href="#shorts-section" style="display:flex;align-items:center;text-decoration:none;color:inherit;width:100%;">
+                <svg width="22" height="22" viewBox="0 0 24 24"><path fill="#e62117" d="M10.5 2.5l7.5 4.5v10l-7.5 4.5-7.5-4.5v-10z"/><polygon fill="#fff" points="10,8 16,12 10,16"/></svg>
+                Shorts
+            </a>
+        </li>
+        <li>
+            <svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#1976d2"/><polygon fill="#fff" points="12,7 12,13 16,15"/></svg>
+            Watch Later
+        </li>
+        <li>
+            <svg width="22" height="22" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="2" fill="#ff0000"/><polygon fill="#fff" points="10,10 16,12 10,14"/></svg>
+            Subscriptions
+        </li>
+        <li>
+            <svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#888"/><path d="M12 7v5l4 2" stroke="#fff" stroke-width="2" fill="none"/></svg>
+            History
+        </li>
+    </ul>
+</nav>

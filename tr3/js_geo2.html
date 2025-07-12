@@ -1,0 +1,23 @@
+<meta charset="UTF-8">
+<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+<metz http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Maps</title>
+    <script src = "https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+        function GG() {
+            var customOP ={
+                center:new google.maps.LatLng(35.6620, 139.7038),
+                zoom: 14,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("DivIID"), customOP);
+        }
+    </script>
+    <head>
+        <body onload="GG()">
+            <center>
+                <h3>Google Maps</h3>
+                <div id = "DivIID" style="width: 500px; height: 400px;"></div>
+            </center>
+        </body>
+    </head>

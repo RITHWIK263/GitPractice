@@ -1,0 +1,82 @@
+<style>
+
+    a 
+    {
+        text-decoration: none; 
+        color: black; 
+        padding: 6px;
+        margin: 10px;
+        border: 10px; 
+        border-color: black;    
+    }
+    hr 
+    {
+        margin: 12px;
+    }
+</style>
+<script>
+    function area() {
+        r = frm.r.value;
+        area = Math.PI*r*r;
+        document.getElementById("ans").innerHTML="Area of Circle: "+area;
+    }
+    function circum(){
+        r = frm.r.value;
+
+        cir = 2*Math.PI*r;
+        document.getElementById("ans").innerHTML="Circumference of Circle: "+cir;
+    }
+    function rectArea(){
+        len = frm.len.value;
+        br = frm.br.value;
+
+        rarea = len*br;
+        document.getElementById("ans").innerHTML="Area of Rectangle: "+rarea;
+
+    }
+    function peri(){
+        len = frm.len.value;
+        br = frm.br.value;
+
+        l = parseInt(len);
+        b = parseInt(br);
+
+        peri = 2*(l+b);
+        document.getElementById("ans").innerHTML="Perimeter of Rectangle: "+peri;
+
+    }
+</script>
+<center>
+    <form name="frm">
+        <BR>
+        <h1>
+            CALCULATOR
+        </h1>
+        <br>
+            <hr width="25%" >
+             Enter Length : &nbsp;&nbsp;&nbsp;<input type="text" name=len>
+        <p>
+            Enter Breadth : <input type="text" name=br><br>
+            <hr width="25%">
+        <p>
+            Enter Radius : <input type="number" name="r";</p></p>
+
+        <p id="btn">
+            <br>
+            <hr width="20%">
+            <input type=button value=" Area " onclick="area()">
+            <input type=button value=" Circuference " onclick="circum()"><br><br>
+            <input type=button value=" RectArea " onclick="rectArea()">
+            <input type=button value=" RectPerimeter " onclick="peri()">
+            <hr width="20%">
+        <p>
+            <span id="ans"> Answer: </span>
+        </p>
+        <br>
+    </form>
+    <hr width="12%">
+
+    <a href="Quadratic.html" target="_blank">Quadratic Solution</a>
+
+    <hr width="12%">
+</center>

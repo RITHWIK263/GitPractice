@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #E2EAF4;
+            padding: 20px;
+        }
+        h2 {
+            color: #060270;
+        }
+        .output {
+            background: #E8E8E8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px #98F5F9;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Array Operations</h2>
+
+    <div class="output" id="sumAvg"></div>
+    <div class="output" id="maxIndex"></div>
+    <div class="output" id="minIndex"></div>
+    <div class="output" id="middleElem"></div>
+    <div class="output" id="evenOddSum"></div>
+    <div class="output" id="reverseOrder"></div>
+    <script>
+        let a = [23, 14, 15, 29, 10];
+        let sum = 0;
+        for (let x of a) {
+            sum += x;
+        }
+        let avg = sum / a.length;
+        document.getElementById("sumAvg").innerHTML = 
+            "<strong>Sum and Average:</strong><br>Sum = " + sum + "<br>Average = " + avg;
+
+        let max = a[0];
+        let maxIndex = 0;
+        let i = 0;
+        for (let x of a) {
+            if (x > max) {
+                max = x;
+                maxIndex = i;
+            }
+            i++;
+        }
+        document.getElementById("maxIndex").innerHTML = 
+            "<strong>Max and Index:</strong><br>Max = " + max + "<br>Index = " + maxIndex;
+        let min = a[0];
+        let minIndex = 0;
+        i = 0;
+        for (let x of a) {
+            if (x < min) {
+                min = x
+                minIndex = i;
+            }
+            i++;
+        }
+        document.getElementById("minIndex").innerHTML = 
+            "<strong>Min and Index:</strong><br>Min = " + min + "<br>Index = " + minIndex;
+        let middle = "";
+        let middleIndex = Math.floor(a.length / 2);
+        i = 0;
+        for (let x of a) {
+            if (i === middleIndex) {
+                middle = x;
+                break;
+            }
+            i++;
+        }
+        document.getElementById("middleElem").innerHTML = 
+            "<strong>Middle Element:</strong><br>Element = " + middle;
+        let evenSum = 0, oddSum = 0;
+        for (let x of a) {
+            if (x % 2 === 0) {
+                evenSum += x;
+            } else {
+                oddSum += x;
+            }
+        }
+        document.getElementById("evenOddSum").innerHTML =
+            "<strong>Sum of Even/Odd Elements:</strong><br>Even Sum = " + evenSum + "<br>Odd Sum = " + oddSum;
+
+        let descArr = [...a].sort((x, y) => y - x);
+        document.getElementById("reverseOrder").innerHTML =
+            "<strong>Array in Descending Order:</strong><br>" + descArr.join(", ");
+    </script>
+
+</body>
+</html>

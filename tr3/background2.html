@@ -1,0 +1,30 @@
+<!-- Infinite animation example: All keyframes below repeat forever using 'infinite' -->
+
+<style>
+.animated-box {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #2196f3, #ff9800);
+    border-radius: 16px;
+    margin: 40px auto;
+    animation: spin 3s linear infinite, pulse 2s ease-in-out infinite alternate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5em;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    box-shadow: 0 0 24px #0006;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 24px #2196f3;}
+    100% { box-shadow: 0 0 48px #ff9800;}
+}
+</style>
+<div class="animated-box">
+    Infinite

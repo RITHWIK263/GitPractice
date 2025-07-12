@@ -1,0 +1,16 @@
+<p id="id1" align="center"></p>
+<script>
+    name = "PaulluaP";
+    len = name.length;
+    output = " ";
+
+    for(i = 0; i<=3; i++){
+        left = name.substring(0, 3-i);
+        space =  "&nbsp;".repeat(2 * (i + 2));
+        right = name.substring(len-3+i);
+        output += left+space+right+"<br>";
+    }
+    document.getElementById("id1").innerHTML= name + "<br>" +output;
+
+
+</script>

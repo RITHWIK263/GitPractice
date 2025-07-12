@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Nature Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #e8f5e8, #d0e8d0);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border: 3px solid #90c695;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            position: relative;
+            height: 200px;
+            border-bottom: 3px solid #90c695;
+            display: flex;
+            align-items: center;
+            padding: 0;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(144, 198, 149, 0.2), rgba(144, 198, 149, 0.4));
+            z-index: 1;
+        }
+
+        .header-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+            z-index: 1;
+            margin: 0;
+            box-shadow: none;
+        }
+
+        .header-title {
+            position: relative;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            letter-spacing: 2px;
+            z-index: 2;
+            text-align: left;
+            width: auto;
+            margin-left: 30px;
+            background: rgba(0,0,0,0.2);
+            padding: 10px 25px 10px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .slogan-bar {
+            background: linear-gradient(to right, #90c695, #7ab87f);
+            padding: 15px 30px;
+            color: white;
+            font-size: 18px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .navigation {
+            background: linear-gradient(to right, #7ab87f, #90c695);
+            padding: 0;
+            border-radius: 25px;
+            margin: 10px 20px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            flex: 1;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-item:last-child .nav-link {
+            border-right: none;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .content-wrapper {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 300px;
+            flex-shrink: 0;
+        }
+
+        .search-box {
+            background: linear-gradient(to bottom, #90c695, #7ab87f);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .search-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .search-input {
+            width: 70%;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .search-button {
+            background: #5a9a5f;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .news-section {
+            background: rgba(144, 198, 149, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #90c695;
+        }
+
+        .news-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2d5a32;
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .news-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(144, 198, 149, 0.5);
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-date {
+            color: #5a9a5f;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .news-text {
+            color: #2d5a32;
+            line-height: 1.5;
+            font-size: 13px;
+            text-align: justify;
+        }
+
+        .read-more {
+            color: #4a8a4f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .main-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #90c695;
+        }
+
+        .content-title {
+            font-size: 22px;
+            color: #2d5a32;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .content-text {
+            color: #2d5a32;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-align: justify;
+        }
+
+        .license-link {
+            color: #4a8a4f;
+            text-decoration: none;
+        }
+
+        .license-link:hover {
+            text-decoration: underline;
+        }
+
+        .info-section {
+            margin-top: 30px;
+        }
+
+        .info-title {
+            font-size: 18px;
+            color: #2d5a32;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .info-images {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .info-images img {
+            width: 90px;
+            height: 70px;
+            border-radius: 8px;
+            border: 3px solid #90c695;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(to right, #90c695, #7ab87f);
+            border-radius: 10px;
+            justify-content: flex-start;
+        }
+
+        .thumbnail {
+            width: 90px;
+            height: 70px;
+            border-radius: 8px;
+            border: 3px solid white;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+            }
+            
+            .nav-link {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            }
+            
+            .header-title {
+                font-size: 24px;
+                left: 0;
+                transform: none;
+                margin-left: 10px;
+            }
+            
+            .gallery-thumbnails {
+                flex-direction: column;
+                align-items: center;
+            }
+            .header-img {
+                margin-left: 0;
+                height: 100px;
+                width: 100%;
+            }
+            .info-images {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-overlay"></div>
+            <img src="images/t.jpg" alt="Header Image" class="header-img" />
+            <h1 class="header-title">Rithwik Reddy</h1>
+        </header>
+        
+        <div class="slogan-bar">
+            live life like you want
+        </div>
+        
+        <nav class="navigation">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">ABOUT US</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">PRODUCTS</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">SERVICES</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">GALLERY</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">CONTACT US</a></li>
+            </ul>
+        </nav>
+        
+        <div class="content-wrapper">
+            <aside class="sidebar">
+                <div class="search-box">
+                    <div class="search-title">Search this site:</div>
+                    <input type="text" class="search-input" placeholder="">
+                    <button class="search-button">→</button>
+                </div>
+                
+                <div class="news-section">
+                    <h3 class="news-title">LATEST NEWS</h3>
+                    
+                    <div class="news-item">
+                        <div class="news-date">May 15, 2008</div>
+                        <div class="news-text">
+                            Maecenas venenatis rhoncus nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Proin lobortis nisi nec nisl. Morta mattis fermentum lectus. Nam vestibulum arcu vulputate ante. Maecenas rutrum dui nec mauris. Donec rutrum velit et amet magna.
+                            <a href="#" class="read-more">read more</a>
+                        </div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-date">May 12, 2008</div>
+                    </div>
+                </div>
+            </aside>
+            
+            <main class="main-content">
+                <h2 class="content-title">Terms of use</h2>
+                <p class="content-text">
+                    This template is released under the <a href="#" class="license-link">Creative Commons Attribution 2.5</a> license. This means it can be used for both private and commercial purposes, edited freely or redistributed as long as you keep the link back to Alpha Studio. However, it can be shortened to "Designed by Alpha Studio" and moved to any other place.
+                </p>
+                <p class="content-text">
+                    Do not use the template in connection with sex, violence, discrimination and for other immoral or illegal purposes.
+                </p>
+                
+                <div class="info-section">
+                    <h3 class="info-title">Info</h3>
+                    <p class="content-text">
+                        The images below are from your collection.<br>
+                    </p>
+                    <div class="info-images">
+                        <img src="images/t1.jpeg">
+                        <img src="images/t2.jpeg">
+                        <img src="images/t3.jpeg">
+                    </div>
+                </div>
+            </main> 
+        </div>
+    </div>
+</body>
+</html>

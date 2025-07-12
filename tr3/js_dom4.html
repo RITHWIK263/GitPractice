@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Name Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🔍 Search Names by Letters</h2>
+
+  <input type="text" id="searchInput" placeholder="Type letters to search...">
+  <button onclick="searchName()">Search</button>
+
+  <div id="result"></div>
+
+  <h3>👥 Available Names</h3>
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Name</th></tr>
+    </thead>
+    <tbody id="nameTable"></tbody>
+  </table>
+
+  <script>
+    const names = ['rithwik', 'nancy', 'gojo', 'ajay', 'adityha', 'RDJ', 'greninja', 'kalki', 'PRABHAS', 'hells paradise'];
+
+    function populateTable() {
+      const table = document.getElementById("nameTable");
+      table.innerHTML = '';
+      names.forEach((name, index) => {
+        const row = `<tr><td>${index + 1}</td><td>${name}</td></tr>`;
+        table.innerHTML += row;
+      });
+    }
+
+    function searchName() {
+      const input = document.getElementById("searchInput").value.trim().toLowerCase();
+      const result = document.getElementById("result");
+      const matchedNames = names.filter(name => name.toLowerCase().includes(input));
+
+      if (matchedNames.length > 0) {
+        result.innerHTML = `<span style="color: green;">✅ Matches Found:</span><br><ul>` +
+          matchedNames.map(name => `<li>${name}</li>`).join('') + `</ul>`;
+      } else {
+        result.innerHTML = `<span style="color: red;">❌ No matches found for "${input}"</span>`;
+      }
+    }
+
+    populateTable();
+  </script>
+
+</body>
+</html>

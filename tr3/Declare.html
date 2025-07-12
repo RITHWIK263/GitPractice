@@ -1,0 +1,37 @@
+<center>
+<script>
+function x() {
+    var b = true;
+    var a = document.frm.nm.value.trim();
+    console.log(a);
+
+    if (a === "") {
+        b = false;
+        alert("I think you have a name!!");
+        document.frm.nm.focus();
+    }
+
+    var p1 = document.frm.pass.value;
+    var p2 = document.frm.cpass.value;
+
+    if (p1 !== p2) {
+        b = false;
+        alert("The passwords do not match");
+        document.frm.pass.value = "";
+        document.frm.cpass.value = "";
+        document.frm.pass.focus();
+    }
+
+    if (b === true) {
+        alert("Registration successful!");
+    }
+}
+</script>
+
+<form name="frm" action="">
+    Name : <input type="text" name="nm"><br><br>
+    Password : <input type="password" name="pass"><br><br>
+    Confirm Password : <input type="password" name="cpass"><br><br>
+    <input type="button" value="Register" onclick="x()">
+</form>
+</center>

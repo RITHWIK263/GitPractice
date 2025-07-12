@@ -1,0 +1,26 @@
+img
+{
+  width: 230;
+  height: 290;
+  border: 2px;
+  border-style: solid;
+  border-radius: 50%;
+border-color: greenyellow;
+}
+div
+{
+   background-color: blue;
+   color: black;
+}
+h2
+{
+   text-align: center;
+   text-shadow: 4px 5px 3px gray;
+}
+h1
+{
+   text-align: center;
+   border: 4px;
+   border-style: solid;
+
+}

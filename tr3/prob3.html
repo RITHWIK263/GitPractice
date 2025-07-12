@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expression Evaluation</title>
+    <style>
+        * {
+            border: 1px solid #060270;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f4ff;
+            border: 4px solid #3b82f6;
+            border-radius: 12px;
+            margin: 24px;
+        }
+        #result {
+            background-color: #e0e7ff;
+            padding: 16px;
+            border-radius: 8px;
+            color: #060270;
+            font-weight: bold;
+            width: fit-content;
+            border: 2px solid #6366f1;
+        }
+        h2 {
+            border: 2px solid #818cf8;
+            border-radius: 6px;
+            background: #f1f5ff;
+            color: #312e81;
+        }
+        p {
+            border: 1px solid #a5b4fc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Evaluate: 2 ^ 3 + 5 * 2 ^ 2 - 12 / 6</h2>
+    <p id="result"></p>
+    <script>
+        const result = 2 ** 3 + 5 * 2 ** 2 - 12 / 6;
+        document.getElementById('result').textContent = "Output: " + result;
+    </script>
+</body>
+</html>

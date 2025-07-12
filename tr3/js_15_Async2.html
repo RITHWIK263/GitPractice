@@ -1,0 +1,12 @@
+<p id="id1" align="center"></p>
+<script>
+    setInterval(x, 1000);
+    function x(){
+        s="";
+        d1=new Date();
+        s=s + d1.getMinutes();
+        s=s + " : " + d1.getSeconds();
+        document.getElementById("id1").innerHTML = s;
+    }
+    
+</script>

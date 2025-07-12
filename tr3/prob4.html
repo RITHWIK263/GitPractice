@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Postfix Evaluation</title>
+    <style>
+        body {
+            background: #f7f4fb;
+        }
+        .colored-padding {
+            background: linear-gradient(135deg, #D4DFEC 0%, #E2EAF4 100%);
+            padding: 32px;
+            border-radius: 16px;
+            margin: 40px auto;
+            max-width: 520px;
+            box-shadow: 0 4px 16px #0033E9;
+        }
+        * {
+            border: 1px solid #8215A1;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .expr-token.number {
+            color: #42AE16;
+            font-weight: bold;
+        }
+        .expr-token.operator {
+            color: #c80000;
+            font-weight: bold;
+        }
+        #result {
+            color: #2DC5CB;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        h2 {
+            color: #060270;
+        }
+        button {
+            background-color: #C4A348; 
+            color: #E2EAF4;           
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #E8E8E8; 
+        }
+    </style>
+</head>
+<body>
+    <div class="colored-padding">
+        <h2>Postfix Expression Evaluation</h2>
+        <p>Expression: 
+            <b id="postfixExpr"></b>
+        </p>
+        <button onclick="evaluatePostfix()">Evaluate</button>
+        <p id="result"></p>
+    </div>
+    <script>
+        const exprStr = "5 6 2 + * 12 4 / -";
+        function renderExpression() {
+            const exprArr = exprStr.split(" ");
+            const exprHtml = exprArr.map(token => {
+                if (!isNaN(token)) {
+                    return `<span class="expr-token number">${token}</span>`;
+                } else {
+                    return `<span class="expr-token operator">${token}</span>`;
+                }
+            }).join(" ");
+            document.getElementById("postfixExpr").innerHTML = exprHtml;
+        }
+        renderExpression();
+
+        function evaluatePostfix() {
+            const expr = exprStr.split(" ");
+            const stack = [];
+            expr.forEach(token => {
+                if (!isNaN(token)) {
+                    stack.push(Number(token));
+                } else {
+                    const b = stack.pop();
+                    const a = stack.pop();
+                    switch(token) {
+                        case '+': stack.push(a + b); break;
+                        case '-': stack.push(a - b); break;
+                        case '*': stack.push(a * b); break;
+                        case '/': stack.push(a / b); break;
+                    }
+                }
+            });
+            document.getElementById("result").textContent = "Output: " + stack[0];
+        }
+    </script>
+</body>
+</html>

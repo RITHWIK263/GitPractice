@@ -1,0 +1,50 @@
+<center>
+    <script>
+        function add1()
+        {
+            a1 = frm.n1.value;
+            a2 = frm.n2.value;
+            if(isNaN(a1) || isNaN(a2))
+            {
+                document.getElementById("answer").innerHTML = "The answer is: " + ans;
+            }
+        else
+        {
+            n1 = parseInt(frm.n1.value);
+            n2 = parseInt(frm.n2.value);
+            ans = n1+n2;
+            document.getElementById("answer").innerHTML = "The answer is: " + ans;
+        }
+    }
+        function multiply()
+        {
+            n1 = frm.n1.value;
+            n2 = frm.n2.value;
+            ans = n1*n2;
+            document.getElementById("answer").innerHTML = "The answer is: " + ans;
+        }
+        function division()
+        {
+            n1 = frm.n1.value;
+            n2 = frm.n2.value;
+            ans = n1/n2;
+            document.getElementById("answer").innerHTML = "The answer is: " + ans;
+        }
+    </script>
+    <form name="frm">
+        Enter a number:
+        <input type="text" name=n1>
+        <p>
+            Enter another number: 
+            <input type="text" name=n2>
+            <p>
+                <input type="button" value=+ onclick="add1()">
+                <input type="button" value=* onclick="multiply()">
+                <input type="button" value=/ onclick="division()">
+            </p>
+            <p>
+                <span Id="answer"> the answer will appear here</span>
+            </p>
+        </p>
+    </form>
+</center>

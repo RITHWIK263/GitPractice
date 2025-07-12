@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>InstaShop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #111;
+      color: #f8c200;
+    }
+
+    .navbar {
+      background-color: #000;
+      padding: 15px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #333;
+      position: relative;
+    }
+
+    .menu-icon {
+      font-size: 1.5em;
+      color: #f8c200;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.6em;
+      font-weight: bold;
+      color: #f8c200;
+      z-index: 1;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .search-bar {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      background-color: #222;
+      color: #f8c200;
+      font-size: 14px;
+    }
+
+    .nav-button {
+      background-color: #f8c200;
+      color: #111;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .shop-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 20px;
+      padding: 30px;
+      justify-content: center;
+    }
+
+    .item {
+      background: #1a1a1a;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      text-align: center;
+    }
+
+    .media-box img,
+    .media-box video {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .item-name {
+      margin: 10px 0 5px;
+      font-weight: bold;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .item-price {
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: #ffcc66;
+      font-weight: 500;
+    }
+
+    .buy-now {
+      background-color: #ff9800;
+      color: #000;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .buy-now:hover {
+      background-color: #ffc85c;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="menu-icon">☰</div>
+    <div class="logo">InstaShop</div>
+    <div class="nav-controls">
+      <input type="text" class="search-bar" placeholder="Search products..." />
+      <button class="nav-button">Admin</button>
+    </div>
+  </div>
+
+  <div class="shop-container">
+    <!-- Each item below gets laid out into rows of 3 -->
+    <div class="item">
+      <div class="media-box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtTnEmxq5s8sBO3JYXtPWYY7nEkCitY93AnA&s" alt="Earth" />
+      </div>
+      <p class="item-name">Whole Earth</p>
+      <p class="item-price">₹9,999,999,999,999.99</p>
+      <button class="buy-now">Buy Now</button>
+    </div>
+
+    <div class="item">
+      <div class="media-box">
+        <video controls muted>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <p class="item-name">Promo Video</p>
+      <p class="item-price">₹299</p>
+      <button class="buy-now">Buy Now</button>
+    </div>
+
+    <div class="item">
+      <div class="media-box">
+        <img src="https://m.media-amazon.com/images/I/61CzJjLxl2L._UF1000,1000_QL80_.jpg" alt="Moon" />
+      </div>
+      <p class="item-name">Moon</p>
+      <p class="item-price">₹100,499,999,999</p>
+      <button class="buy-now">Buy Now</button>
+    </div>
+
+    <div class="item">
+      <div class="media-box">
+        <img src="https://i.pinimg.com/236x/f7/85/f7/f785f719bc740c07447572f27c4f76d7.jpg" alt="Sign" />
+      </div>
+      <p class="item-name">Prabhas Sign</p>
+      <p class="item-price">₹999,999</p>
+      <button class="buy-now">Buy Now</button>
+    </div>
+
+    <div class="item">
+      <div class="media-box">
+        <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRdhfxuiTMHz1QroiYdShTqfRCUzx2bMGiA_4Qp_H4gZSD2C5oossJ_iRawCwCAvPgJhMRbbL6ohuJdmZUEXCIDHYcK0fyd_GuDMtBl7tWa7zZSPqPDYYUd" alt="Shoes" />
+      </div>
+      <p class="item-name">Shoes</p>
+      <p class="item-price">₹2,299</p>
+      <button class="buy-now">Buy Now</button>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.buy-now').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.closest('.item').querySelector('.item-name').textContent;
+        alert(`You selected "${name}"!`);
+      });
+    });
+  </script>
+
+</body>
+</html>

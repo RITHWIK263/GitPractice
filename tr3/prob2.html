@@ -1,0 +1,103 @@
+<body>
+<style>
+    #id1 {
+        color: #060270; 
+        border: 2px solid #060270;
+        padding: 12px;
+        margin: 8px 0;
+        background: #E2EAF4;
+    }
+    .q2 {
+        color: #7B4F00; 
+        border: 2px solid #98F5F9;
+        padding: 12px;
+        margin: 8px 0;
+        background: #DFC57B;
+        white-space: pre-wrap;
+    }
+    .q3 {
+        color: #6C4E8B; 
+        border: 2px solid #E7DDFF;
+        padding: 12px;
+        margin: 8px 0;
+        background: #E8E8E8;
+        white-space: pre-wrap;
+    }
+    .q4 {
+        color: #7D3C98;
+        border: 2px solid #CC6CE7;
+        padding: 12px;
+        margin: 8px 0;
+        background: #CECECE;
+        white-space: pre-wrap;
+    }
+    .q5 {
+        color: #5B7C16;
+        border: 2px solid #EFC3CA;
+        padding: 12px;
+        margin: 8px 0;
+        background: #BFD641;
+        white-space: pre-wrap;
+    }
+</style>
+<p id="id1" align="center"></p>
+<div class="q2" id="q2"></div>
+<div class="q3" id="q3"></div>
+<div class="q4" id="q4"></div>
+<div class="q5" id="q5"></div>
+<script>
+    let name = "PaulluaP";
+    let len = name.length;
+    let output1 = " ";
+
+    for(let i = 0; i <= 3; i++){
+        let left = name.substring(0, 3 - i);
+        let space =  "&nbsp;".repeat(2 * (i + 2));
+        let right = name.substring(len - 3 + i);
+        output1 += left + space + right + "<br>";
+    }
+    document.getElementById("id1").innerHTML = name + "<br>" + output1;
+    function firstNonRepeatingChar(str) {
+        for (let c of str) {
+            if (str.indexOf(c) === str.lastIndexOf(c)) {
+                return c;
+            }
+        }
+        return null;
+    }
+    function longestPalindrome(s) {
+        let max = '';
+        for (let i = 0; i < s.length; i++) {
+            for (let j = i + 1; j <= s.length; j++) {
+                let sub = s.slice(i, j);
+                if (sub === sub.split('').reverse().join('') && sub.length > max.length) {
+                    max = sub;
+                }
+            }
+        }
+        return max;
+    }
+
+    function swapCase(str) {
+        return str.split('').map(c =>
+            c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()
+        ).join('');
+    }
+
+    function areAnagrams(str1, str2) {
+        let normalize = s => s.replace(/\s/g, '').toLowerCase().split('').sort().join('');
+        return normalize(str1) === normalize(str2);
+    }
+
+    let testStr = "swiss";
+    let palindromeStr = "mom";
+    let swapStr = "Hello WoRLd";
+    let ana1 = "either";
+    let ana2 = "their";
+
+    document.getElementById('q2').innerHTML = "<b>2. First non-repeating char in '" + testStr + "':</b> " + firstNonRepeatingChar(testStr);
+    document.getElementById('q3').innerHTML = "<b>3. Longest palindrome in '" + palindromeStr + "':</b> " + longestPalindrome(palindromeStr);
+    document.getElementById('q4').innerHTML = "<b>4. Swap case of '" + swapStr + "':</b> " + swapCase(swapStr);
+    document.getElementById('q5').innerHTML = "<b>5. Are '" + ana1 + "' and '" + ana2 + "' anagrams?</b> " + (areAnagrams(ana1, ana2) ? "Yes" : "No");
+</script>
+</body>

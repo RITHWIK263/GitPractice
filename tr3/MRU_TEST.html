@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Event Countdown App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f4f8;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    form {
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    input, select, textarea, button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    button {
+      background-color: #007acc;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    .event-card {
+      border: 2px solid #007acc;
+      padding: 15px;
+      margin: 15px 0;
+      background: #fff;
+      border-radius: 8px;
+    }
+    .category {
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 1.1em;
+    }
+    .countdown {
+      color: green;
+      font-size: 1.2em;
+      margin-top: 8px;
+    }
+    .controls {
+      margin-top: 10px;
+    }
+    em {
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1> Event Countdown App</h1>
+  <form id="eventForm">
+    <input type="text" id="title" placeholder="Event Title" required />
+    <textarea id="desc" placeholder="Description"></textarea>
+    <input type="datetime-local" id="datetime" required />
+    <input type="email" id="email" placeholder="Email for Reminder" />
+    <select id="category">
+      <option value="Birthday"> Birthday</option>
+      <option value="Meeting"> Meeting</option>
+      <option value="Holiday"> Holiday</option>
+      <option value="Custom"> Custom</option>
+    </select>
+    <button type="submit">Add Event</button>
+  </form>
+
+  <div id="eventList"></div>
+
+  <script>
+    let events = JSON.parse(localStorage.getItem('events')) || [];
+
+    document.getElementById("eventForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = title.value.trim();
+      const desc = desc.value.trim();
+      const datetime = new Date(datetime.value);
+      const email = email.value.trim();
+      const category = category.value;
+
+      if (!title || isNaN(datetime.getTime()) || datetime <= new Date()) {
+        alert("Please enter a valid title and future date/time.");
+        return;
+      }
+
+      const event = {
+        id: Date.now(),
+        title,
+        desc,
+        datetime,
+        email,
+        category
+      };
+
+      events.push(event);
+      localStorage.setItem('events', JSON.stringify(events));
+      renderEvents();
+    });
+
+    function renderEvents() {
+      const container = document.getElementById("eventList");
+      container.innerHTML = '';
+      const now = new Date();
+
+      events.forEach(event => {
+        const card = document.createElement("div");
+        card.className = "event-card";
+        const timeDiff = event.datetime - now;
+        const countdown = formatCountdown(timeDiff);
+
+        if (timeDiff < 0) {
+          card.innerHTML = `<strong>${event.title}</strong>  is happening now!`;
+        } else {
+          card.innerHTML = `
+            <div class="category">${event.category}</div>
+            <strong>${event.title}</strong><br/>
+            ${event.desc}<br/>
+            <div class="countdown" id="cd-${event.id}">${countdown}</div>
+            ${event.email ? `<em> Reminder will be sent</em>` : ''}
+            <div class="controls">
+              <button onclick="deleteEvent(${event.id})"> Delete</button>
+            </div>
+          `;
+
+          const reminderTime = new Date(event.datetime);
+          reminderTime.setDate(reminderTime.getDate() - 1);
+          if (now > reminderTime && now < event.datetime && event.email) {
+            console.log(`Reminder: '${event.title}' is happening tomorrow.`);
+            console.log(`Email sent to: ${event.email}`);
+          }
+
+          setInterval(() => {
+            const newDiff = event.datetime - new Date();
+            const cdEl = document.getElementById(`cd-${event.id}`);
+            if (cdEl) cdEl.textContent = formatCountdown(newDiff);
+          }, 1000);
+        }
+
+        container.appendChild(card);
+      });
+    }
+
+    function formatCountdown(ms) {
+      const sec = Math.floor(ms / 1000);
+      const days = Math.floor(sec / 86400);
+      const hrs = Math.floor((sec % 86400) / 3600);
+      const mins = Math.floor((sec % 3600) / 60);
+      const secs = sec % 60;
+      return `${days} Days ${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function deleteEvent(id) {
+      if (confirm("Are you sure you want to delete this event?")) {
+        events = events.filter(e => e.id !== id);
+        localStorage.setItem('events', JSON.stringify(events));
+        renderEvents();
+      }
+    }
+
+    events.forEach(e => { e.datetime = new Date(e.datetime); });
+    renderEvents();
+  </script>
+</body>
+</html>

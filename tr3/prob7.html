@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Name to Digit Converter</title>
+  <style>
+    body {
+      background-color: #E8E8E8;
+      font-family: Arial, sans-serif;
+    }
+    .converter-box {
+      background: #E2EAF4;
+      border: 2px solid #5DE2E7;
+      border-radius: 10px;
+      padding: 30px 40px;
+      max-width: 400px;
+      margin: 60px auto;
+      box-shadow: 0 4px 12px rgba(74,144,226,0.1);
+    }
+    h2 {
+      color: #060270;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      padding: 8px 12px;
+      border: 1.5px solid #060270;
+      border-radius: 5px;
+      width: 70%;
+      margin-bottom: 10px;
+    }
+    button {
+      background: #060270;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    button:hover {
+      background: #DFC57B;
+    }
+    #result {
+      margin-top: 18px;
+      color: #DFC57B;
+      font-weight: bold;
+      border: 1.5px solid #060270;
+      border-radius: 5px;
+      padding: 10px;
+      background: #CECECE;
+      min-height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="converter-box">
+    <h2>Convert Number Name to Digits</h2>
+    <input type="text" id="numberName" placeholder="Enter number name (e.g., Twenty Three)">
+    <button onclick="convertNumberName()">Convert</button>
+    <p id="result"></p>
+  </div>
+  <script>
+    const ones = {
+      "zero":0,"one":1,"two":2,"three":3,"four":4,"five":5,"six":6,"seven":7,"eight":8,"nine":9,
+      "ten":10,"eleven":11,"twelve":12,"thirteen":13,"fourteen":14,"fifteen":15,"sixteen":16,"seventeen":17,"eighteen":18,"nineteen":19
+    };
+    const tens = {
+      "twenty":20,"thirty":30,"forty":40,"fifty":50,"sixty":60,"seventy":70,"eighty":80,"ninety":90
+    };
+
+    function convertNumberName() {
+      let input = document.getElementById('numberName').value.toLowerCase().replace(/-/g, ' ');
+      let words = input.split(/\s+/);
+      let num = 0, temp = 0;
+
+      for (let word of words) {
+        if (ones[word] !== undefined) {
+          temp += ones[word];
+        } else if (tens[word] !== undefined) {
+          temp += tens[word];
+        } else if (word === "hundred") {
+          temp *= 100;
+        } else if (word === "thousand") {
+          temp *= 1000;
+          num += temp;
+          temp = 0;
+        }
+      }
+      num += temp;
+      document.getElementById('result').innerText = num >= 100 ? num : (num >= 10 ? num : "Please enter at least a three-digit number name.");
+    }
+  </script>
+</body>
+</html>

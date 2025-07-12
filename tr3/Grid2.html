@@ -1,0 +1,33 @@
+<style>
+    .container{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap:10px 20px;
+    }
+    .container > div {
+        background-color: darkgray;
+        padding: 15px;
+        /*margin: 5px;*/
+        border: 3px solid black;
+        text-align: center;
+
+    }
+    .abc {
+        grid-column: 1/span 2;
+    }
+    .def {
+        grid-row: 3/span 2;
+    }
+</style>
+<div class="container">
+    <div class="abc">MRU</div>
+    <div>Hyderabad</div>
+    <div class="def">Telangana</div>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>  
+    <div>6</div>
+    <div>7</div>
+</div>

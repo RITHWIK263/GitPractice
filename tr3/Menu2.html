@@ -1,0 +1,61 @@
+<style>
+ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    background-color: dimgray;
+    border:1;
+    /* border-style:solid*/
+    width: 100%;
+    overflow:hidden;
+}
+li
+{
+    float: left;
+}
+li a, .ddmbtn
+{
+    display: inline-block;
+    color: whitesmoke;
+    text-align: center;
+    text-decoration: none;
+}
+li a:hover, .ddm:hover, .ddmbtn
+{
+    background-color: darkgray;
+}
+li.ddm
+{
+    display: inline-block;
+}
+.ddm-submenu {
+    display: none;
+    position: absolute;
+    background-color: greenyellow;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px dodgerblue;
+    z-index: 1;
+}
+.ddm-submenu a:hover
+{
+  color:moccasin;
+}
+.ddm:hover .ddm-submenu {
+    display: block;
+}
+</style>
+<ul>
+    <li><a href ="Home.html" class="active">Home</a></li>
+    <li><a href ="form1.html" >Check</a></li>
+    <li><a href ="background2.html" >Animation</a></li>
+    <li><a href = "background1.html">BG Anm</a></li>
+    <li>
+        <div class="ddm">
+            <a href = "javascript:void(0)" class="ddmbtn">Dropdown Menu</a>
+            <li><a href=Menu1.html>sub Menu 1</a></li>
+            <li><a href=Sematic.html>sub Menu 2</a></li>
+        </div>
+    </li>
+</ul>
+<body>
+    <div>

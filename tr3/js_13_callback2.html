@@ -1,0 +1,12 @@
+<p id="id1" align="center"></p>
+<script>
+    setTimeout(show, 5000);
+    function show(ans) {
+        document.getElementById("id1").innerHTML ="the answer is: " + ans;
+    }
+    function add1(i, j, display){
+        ans=i+j;
+        display(ans);
+    }
+    add1(23, 14, show);
+</script>

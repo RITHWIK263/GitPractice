@@ -1,0 +1,143 @@
+SQL=>structured query language
+DDL=>Data Definition language 
+
+int i=023;
+print("%d", i);         //19
+
+     23     Decimal
+     023     Octal
+     0x23     Hexadecimal
+
+number(11, 2)     12345678.12
+here 11 called precision and 2 is scale
+
+MYSQL Text        2^16    65535
+      char     
+      varchar
+      small text   2^15    32767
+      tiny text            1024
+
+create table Student(
+       r.no    int,
+       name   text,
+       branch text,
+       Sem    int,
+       dob    date
+);
+insert into Student values(1, 'rithwik', 'CSE', 5, '*');    or  best way is
+describe Student;
+
+insert into Student values(name, r.no, Sem) ;
+
+collection of row facts and figures known as data
+==> why we study about database=> reduce redundancy
+
+=> exhaustive search
+=> inconsistency
+=>
+for security purpose we have raid Levels
+
+having-> further filters the data based on-> group by Claus
+
+
+
+ANSI STYLE-> one or to can understand 
+select acc_on from issued_books where card_no =(
+select card_no from members where m_name ='Vijay Gupta');
+
+THETA STYLE-> every 
+
+-------------------------------------------------------------------
+==>2nd normal form
+=>
+->Bill no
+->Bill Date
+->Item
+->Quantity
+->Price Per Limit
+
+E.g. 1
+>Bill no--1--8/7--
+>Item--Rim bar--
+>Price--10--
+>Quantity--2
+
+E.g. 2
+>Bill--2---10/7--
+>Item--Rice--
+>Price--60--
+>Quantity--60 kg
+
+BCNF-->explain tomorrow
+
+----------------------------------------------------------------------
+
+
+==> BCNF is a higher version of the Third Normal Form (3NF) in database normalization. It was developed to handle certain types of anomalies not handled by 3NF.
+
+=>  BCNF Definition:
+--> A relation is in BCNF if:
+
+--> For every non-trivial functional dependency X → Y, X must be a super key.
+
+--> Non-trivial means: Y is not a subset of X.
+
+--> Super key means: X uniquely identifies a row in the table.
+
+--> Why BCNF?
+->  Even if a table is in 3NF, it might still have:
+
+->  Redundancy
+
+->  Update anomalies
+
+->  If a non-super key determines part of the table, BCNF fixes that.
+
+> Example to Understand BCNF:
+  Table: StudentCourse
+  StudentID	Course	Instructor
+     101	 DBMS  	Prof. A
+     102         DBMS  	Prof. A
+     101         OS     Prof. B
+
+->  FDs (Functional Dependencies):
+>   StudentID + Course → Instructor
+
+>   Course → Instructor
+
+>   Here, Course → Instructor violates BCNF if Course is not a super key.
+
+->  Why it's not in BCNF:
+>   Course → Instructor holds, but Course is not a super key.
+
+>   So it violates BCNF.
+
+--> BCNF Decomposition:
+->  Split the original table into:
+
+1. CourseInstructor Table
+     Course	Instructor
+     DBMS	Prof. A
+     OS	        Prof. B
+
+2. StudentCourse   Table
+     StudentID	Course
+      101	DBMS
+      102	DBMS
+      101	OS
+
+>  Now both tables satisfy BCNF.
+
+-> Key Point:
+>  BCNF removes all functional dependencies where:
+
+>  A non-superkey determines another attribute.
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+<p id="id1" align="center"></p>
+
+<script>
+    class A {
+        add1() {
+            this.i = 23;
+            this.j = 14;
+            this.ans = this.i + this.j;
+            document.getElementById("id1").innerHTML = "Answer is : " + this.ans;
+        }
+
+        add2(i, j) {
+            this.ans = i + j;
+            document.getElementById("id1").innerHTML = "Answer is : " + this.ans;
+        }
+
+        add3(i, j) {
+            this.ans = i + j;
+            return this.ans;
+        }
+
+        add4(i, j = 50) {
+            this.ans = i + j;
+            return this.ans;
+            // Note: this line is unreachable due to return above
+            // document.getElementById("id1").innerHTML = "Answer is : " + this.ans;
+        }
+
+        add5(...ar) {
+            let sum = 0;
+            for (let x of ar) {
+                sum += x;
+            }
+            this.sum = sum;
+            document.getElementById("id1").innerHTML = "The sum is : " + this.sum;
+        }
+    }
+
+    const a1 = new A();
+
+    // Uncomment the function you want to test:
+    // a1.add1();
+    // a1.add2(23, 6);
+    // let n = a1.add3(23, 14);
+    // document.getElementById("id1").innerHTML = "Answer is : " + n;
+    // let n = a1.add4(23);
+    // document.getElementById("id1").innerHTML = "Answer is : " + n;
+
+    a1.add5(23, 14, 17, 6);  // Active method for testing
+</script>

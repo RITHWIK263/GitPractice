@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name to Initials Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f9fafb;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px #060270;
+            padding: 32px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .header {
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .input:read-only {
+            background-color: #E2EAF4;
+        }
+        .button {
+            width: 100%;
+            padding: 12px 24px;
+            background-color: #3b82f6;
+            color: #E2EAF4;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .button:hover {
+            background-color: #2563eb;
+        }
+
+        .result-group {
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .result-input {
+            flex: 1;
+        }
+
+        .copy-button {
+            padding: 12px;
+            background-color: #E2EAF4;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .copy-button:hover {
+            background-color: #E2EAF4;
+        }
+
+        .examples {
+            margin-top: 24px;
+            padding: 16px;
+            background-color: #E2EAF4;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .examples strong {
+            color: #374151;
+        }
+
+        .examples p {
+            margin-bottom: 4px;
+        }
+
+        .copy-icon {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #10b981;
+            color: #E2EAF4;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Name to Initials Converter</h1>
+            <p class="description">
+                Convert full names to initials format (e.g., "John Doe Smith" → "J. D. Smith")
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label for="fullName" class="label">Full Name</label>
+            <input 
+                type="text" 
+                id="fullName" 
+                class="input" 
+                placeholder="Enter full name"
+                value="Tridib Kumar Paul"
+            >
+        </div>
+
+        <button onclick="convertName()" class="button">
+            Convert to Initials
+        </button>
+
+        <div class="form-group">
+            <label for="result" class="label">Result</label>
+            <div class="result-group">
+                <input 
+                    type="text" 
+                    id="result" 
+                    class="input result-input" 
+                    readonly
+                    value="T. K. Paul"
+                >
+                <button onclick="copyToClipboard()" class="copy-button" title="Copy to clipboard">
+                    <svg class="copy-icon" viewBox="0 0 24 24">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="m5 15-4-4 4-4"></path>
+                        <path d="M5 15H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="examples">
+            <p><strong>Examples:</strong></p>
+            <p>• "Tridib Kumar Paul" → "T. K. Paul"</p>
+            <p>• "John Doe Smith" → "J. D. Smith"</p>
+            <p>• "Mary Johnson" → "M. Johnson"</p>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">
+        Copied to clipboard!
+    </div>
+
+    <script>
+        function convertToInitials(fullName) {
+            if (!fullName.trim()) return "";
+            
+            const nameParts = fullName.trim().split(/\s+/);
+            
+            if (nameParts.length === 1) {
+                return nameParts[0];
+            }
+            
+            const initials = nameParts.slice(0, -1).map(name => 
+                name.charAt(0).toUpperCase() + "."
+            );
+            const lastName = nameParts[nameParts.length - 1];
+            
+            return [...initials, lastName].join(" ");
+        }
+
+        function convertName() {
+            const inputElement = document.getElementById('fullName');
+            const resultElement = document.getElementById('result');
+            
+            const fullName = inputElement.value;
+            const convertedName = convertToInitials(fullName);
+            
+            resultElement.value = convertedName;
+        }
+
+        function copyToClipboard() {
+            const resultElement = document.getElementById('result');
+            const toast = document.getElementById('toast');
+            
+            resultElement.select();
+            resultElement.setSelectionRange(0, 99999); 
+            
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+
+                navigator.clipboard.writeText(resultElement.value).then(() => {
+                    showToast();
+                }).catch(() => {
+                    alert('Failed to copy to clipboard');
+                });
+            }
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        document.getElementById('fullName').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                convertName();
+            }
+        });
+
+        document.getElementById('fullName').addEventListener('input', function() {
+            convertName();
+        });
+    </script>
+</body>
+</html>
